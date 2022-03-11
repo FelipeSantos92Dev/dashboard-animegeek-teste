@@ -13,14 +13,11 @@ export function Header() {
       px="6"
       align="center"
     >
-      <Text
-        fontSize="3xl"
-        fontWeight="bold"
-        letterSpacing="tight"
-        w="64"
-      >
+      <Text fontSize="3xl" fontWeight="bold" letterSpacing="tight" w="64">
         ThunderGo
-        <Text as="span" ml="1" color="orange.500" >.</Text>
+        <Text as="span" ml="1" color="orange.500">
+          .
+        </Text>
       </Text>
 
       <Flex
@@ -36,24 +33,19 @@ export function Header() {
         bg="gray.800"
         borderRadius="full"
       >
-
         <Input
           color="gray.50"
           variant="unstyled"
           px="4"
           mr="4"
           placeholder="Buscar ma plataforma"
-          _placeholder={{ color: 'gray.400 '}}
+          _placeholder={{ color: 'gray.400 ' }}
         />
 
         <Icon as={RiSearchLine} fontSize="20" />
-
       </Flex>
 
-      <Flex
-        align="center"
-        ml="auto"
-      >
+      <Flex align="center" ml="auto">
         <HStack
           spacing="8"
           mx="8"
@@ -75,9 +67,12 @@ export function Header() {
             </Text>
           </Box>
 
-          <Avatar size="md" name="Felipe Santos" src="https://github.com/FelipeSantos92Dev.png" />
+          <Avatar
+            size="md"
+            name="Felipe Santos"
+            src="https://github.com/FelipeSantos92Dev.png"
+          />
         </Flex>
-
       </Flex>
     </Flex>
   )

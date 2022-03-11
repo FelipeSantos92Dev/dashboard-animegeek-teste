@@ -1,5 +1,4 @@
-import { Box, Button, Stack } from "@chakra-ui/react";
-
+import { Box, Button, Stack } from '@chakra-ui/react'
 
 export function Pagination() {
   return (
