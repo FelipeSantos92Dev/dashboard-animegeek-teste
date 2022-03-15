@@ -6,6 +6,7 @@ import {
   Heading,
   HStack,
   Icon,
+  Spinner,
   Table,
   Tbody,
   Td,
@@ -16,24 +17,44 @@ import {
   useBreakpointValue
 } from '@chakra-ui/react'
 import Link from 'next/link'
-import { useEffect } from 'react'
 import { RiAddLine, RiDeleteBinLine, RiPencilFill } from 'react-icons/ri'
+import { useQuery } from 'react-query'
 
 import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 
 export default function UserList() {
+  const { data, isLoading, error } = useQuery(
+    'users',
+    async () => {
+      const response = await fetch('http://localhost:3000/api/users')
+      const data = await response.json()
+
+      const users = data.users.map((user: any) => {
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+          })
+        }
+      })
+
+      return users
+    },
+    {
+      staleTime: 1000 * 5
+    }
+  )
+
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true
   })
-
-  useEffect(() => {
-    fetch('http://localhost:3000/api/users')
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-  }, [])
 
   return (
     <Box>
@@ -60,103 +81,65 @@ export default function UserList() {
             </Link>
           </Flex>
 
-          <Table colorScheme="whiteAlpha">
-            <Thead>
-              <Tr>
-                <Th px={['4', '4', '6']} color="gray.300" width="8">
-                  <Checkbox colorScheme="orange" />
-                </Th>
-                <Th>Usuário</Th>
-                {isWideVersion && <Th>Data de Cadastro</Th>}
-                <Th width="8">Ações</Th>
-              </Tr>
-            </Thead>
+          {isLoading ? (
+            <Flex justify={'center'}>
+              <Spinner />
+            </Flex>
+          ) : error ? (
+            <Flex justify={'center'}>
+              <Text>Falha ao carregar dados</Text>
+            </Flex>
+          ) : (
+            <>
+              <Table colorScheme="whiteAlpha">
+                <Thead>
+                  <Tr>
+                    <Th px={['4', '4', '6']} color="gray.300" width="8">
+                      <Checkbox colorScheme="orange" />
+                    </Th>
+                    <Th>Usuário</Th>
+                    {isWideVersion && <Th>Data de Cadastro</Th>}
+                    <Th width="8">Ações</Th>
+                  </Tr>
+                </Thead>
 
-            <Tbody>
-              <Tr>
-                <Td px={['4', '4', '6']}>
-                  <Checkbox colorScheme="orange" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Felipe Santos</Text>
-                    <Text fontSize="sm" color="gray.300">
-                      dev.felipesantos@gmail.com
-                    </Text>
-                  </Box>
-                </Td>
-                {isWideVersion && <Td>11 de Março, 2022</Td>}
-                <Td>
-                  <Flex>
-                    <HStack spacing={2}>
-                      <Button as="a" size="sm" colorScheme="yellow">
-                        <Icon as={RiPencilFill} fontSize="lg" />
-                      </Button>
+                <Tbody>
+                  {data.map((user: any) => {
+                    return (
+                      <Tr key={user.id}>
+                        <Td px={['4', '4', '6']}>
+                          <Checkbox colorScheme="orange" />
+                        </Td>
+                        <Td>
+                          <Box>
+                            <Text fontWeight="bold">{user.name}</Text>
+                            <Text fontSize="sm" color="gray.300">
+                              {user.email}
+                            </Text>
+                          </Box>
+                        </Td>
+                        {isWideVersion && <Td>{user.createdAt}</Td>}
+                        <Td>
+                          <Flex>
+                            <HStack spacing={2}>
+                              <Button as="a" size="sm" colorScheme="yellow">
+                                <Icon as={RiPencilFill} fontSize="lg" />
+                              </Button>
 
-                      <Button as="a" size="sm" colorScheme="red">
-                        <Icon as={RiDeleteBinLine} fontSize="lg" />
-                      </Button>
-                    </HStack>
-                  </Flex>
-                </Td>
-              </Tr>
-              <Tr>
-                <Td px={['4', '4', '6']}>
-                  <Checkbox colorScheme="orange" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Felipe Santos</Text>
-                    <Text fontSize="sm" color="gray.300">
-                      dev.felipesantos@gmail.com
-                    </Text>
-                  </Box>
-                </Td>
-                {isWideVersion && <Td>11 de Março, 2022</Td>}
-                <Td>
-                  <Flex>
-                    <HStack spacing={2}>
-                      <Button as="a" size="sm" colorScheme="yellow">
-                        <Icon as={RiPencilFill} fontSize="lg" />
-                      </Button>
-
-                      <Button as="a" size="sm" colorScheme="red">
-                        <Icon as={RiDeleteBinLine} fontSize="lg" />
-                      </Button>
-                    </HStack>
-                  </Flex>
-                </Td>
-              </Tr>
-              <Tr>
-                <Td px={['4', '4', '6']}>
-                  <Checkbox colorScheme="orange" />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Felipe Santos</Text>
-                    <Text fontSize="sm" color="gray.300">
-                      dev.felipesantos@gmail.com
-                    </Text>
-                  </Box>
-                </Td>
-                {isWideVersion && <Td>11 de Março, 2022</Td>}
-                <Td>
-                  <Flex>
-                    <HStack spacing={2}>
-                      <Button as="a" size="sm" colorScheme="yellow">
-                        <Icon as={RiPencilFill} fontSize="lg" />
-                      </Button>
-
-                      <Button as="a" size="sm" colorScheme="red">
-                        <Icon as={RiDeleteBinLine} fontSize="lg" />
-                      </Button>
-                    </HStack>
-                  </Flex>
-                </Td>
-              </Tr>
-            </Tbody>
-          </Table>
-          <Pagination />
+                              <Button as="a" size="sm" colorScheme="red">
+                                <Icon as={RiDeleteBinLine} fontSize="lg" />
+                              </Button>
+                            </HStack>
+                          </Flex>
+                        </Td>
+                      </Tr>
+                    )
+                  })}
+                </Tbody>
+              </Table>
+              <Pagination />
+            </>
+          )}
         </Box>
       </Flex>
     </Box>
