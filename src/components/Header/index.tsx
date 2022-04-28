@@ -14,20 +14,20 @@ export function Header() {
   })
   return (
     <Flex
-      as="header"
-      w="100%"
-      maxWidth={1480}
-      h="20"
-      mx="auto"
-      mt="4"
-      px="6"
-      align="center"
+      as={'header'}
+      w={'100%'}
+      maxW={1480}
+      h={'14'}
+      mx={'auto'}
+      mt={'4'}
+      px={'6'}
+      align={'center'}
     >
       {!isWideVersion && (
         <IconButton
-          aria-label="Open navigation"
+          aria-label={'Open navigation'}
           icon={<Icon as={RiMenuLine} />}
-          variant="unstyled"
+          variant={'unstyled'}
           fontSize={'24'}
           onClick={onOpen}
           mr={'2'}
@@ -37,7 +37,7 @@ export function Header() {
 
       {isWideVersion && <SearchBox />}
 
-      <Flex align="center" ml="auto">
+      <Flex align={'center'} ml={'auto'}>
         <NotificationsNav />
         <Profile showProfileData={isWideVersion} />
       </Flex>

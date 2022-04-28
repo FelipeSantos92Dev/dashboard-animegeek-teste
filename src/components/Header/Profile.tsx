@@ -6,20 +6,20 @@ interface ProfileProps {
 
 export function Profile({ showProfileData = true }: ProfileProps) {
   return (
-    <Flex align="center">
+    <Flex align={'center'}>
       {showProfileData && (
-        <Box mr="4" textAlign="right">
+        <Box mr={'4'} textAlign={'right'}>
           <Text>Felipe Santos</Text>
-          <Text color="gray.300" fontSize="small">
+          <Text color={'gray.600'} fontSize={'sm'}>
             dev.felipesantos@gmail.com
           </Text>
         </Box>
       )}
 
       <Avatar
-        size="md"
-        name="Felipe Santos"
-        src="https://github.com/FelipeSantos92Dev.png"
+        size={'md'}
+        name={'Felipe Santos'}
+        src={'https://github.com/FelipeSantos92Dev.png'}
       />
     </Flex>
   )

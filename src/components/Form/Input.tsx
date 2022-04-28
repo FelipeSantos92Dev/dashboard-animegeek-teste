@@ -25,12 +25,10 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
       <ChackraInput
         name={name}
         id={name}
-        focusBorderColor="pink.500"
-        variant="filled"
-        bgColor="gray.900"
-        _hover={{
-          bgColor: 'gray.900'
-        }}
+        focusBorderColor={'blue.500'}
+        variant={'filled'}
+        bgColor={'gray.200'}
+        _hover={{ bgColor: 'gray.100' }}
         size="lg"
         ref={ref}
         {...rest}

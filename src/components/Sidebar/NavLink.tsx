@@ -21,9 +21,9 @@ export default function NavLink({
 }: NavLinkProps) {
   return (
     <ActiveLink href={href} passHref>
-      <ChakraLink display="flex" alignContent="center" {...rest}>
-        <Icon as={icon} fontSize="20" />
-        <Text ml="4" fontWeight="medium">
+      <ChakraLink display={'flex'} alignContent={'center'} {...rest}>
+        <Icon as={icon} fontSize={'20'} />
+        <Text ml={'4'} fontWeight={'medium'}>
           {children}
         </Text>
       </ChakraLink>

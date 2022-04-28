@@ -14,13 +14,13 @@ export default function PaginationItem({
   if (isCurrent) {
     return (
       <Button
-        size="sm"
-        fontSize="xs"
-        width="4"
-        colorScheme="orange"
+        size={'sm'}
+        fontSize={'xs'}
+        width={'4'}
+        colorScheme={'blue'}
         disabled
         _disabled={{
-          bg: 'orange.500',
+          bg: 'blue.500',
           cursor: 'default'
         }}
       >
@@ -30,10 +30,10 @@ export default function PaginationItem({
   }
   return (
     <Button
-      size="sm"
-      fontSize="xs"
-      width="4"
-      bg="gray.700"
+      size={'sm'}
+      fontSize={'xs'}
+      width={'4'}
+      bg={'gray.400'}
       _hover={{
         bg: 'gray.500'
       }}

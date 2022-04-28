@@ -7,13 +7,13 @@ export default function NotificationsNav() {
       spacing={['6', '8']}
       mx={['6', '8']}
       pr={['6', '8']}
-      py="1"
-      color="gray.300"
+      py={'1'}
+      color={'gray.700'}
       borderRightWidth={1}
-      borderColor="gray.700"
+      borderColor={'gray.400'}
     >
-      <Icon as={RiNotificationLine} fontSize="20" />
-      <Icon as={RiUserAddLine} fontSize="20" />
+      <Icon as={RiNotificationLine} fontSize={'20'} />
+      <Icon as={RiUserAddLine} fontSize={'20'} />
     </HStack>
   )
 }
