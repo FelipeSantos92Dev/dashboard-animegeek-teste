@@ -16,7 +16,6 @@ import {
   Tr,
   useBreakpointValue
 } from '@chakra-ui/react'
-import axios from 'axios'
 import NextLink from 'next/link'
 import { useState } from 'react'
 import { useQuery } from 'react-query'
@@ -27,6 +26,7 @@ import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 import { queryClient } from '../../services/queryClient'
+import { api } from '../../services/api'
 
 type Profile = {
   name: string
@@ -46,8 +46,7 @@ type User = {
 
 export default function UserList() {
   const { data, isLoading, isFetching, error } = useQuery('users', async () => {
-    const url = 'http://localhost:4000/users'
-    const response = await axios.get(url)
+    const response = await api.get('users')
 
     return response.data
   })
@@ -63,7 +62,7 @@ export default function UserList() {
     await queryClient.prefetchQuery(
       ['user', userId],
       async () => {
-        const response = await axios.get(`users/${userId}`)
+        const response = await api.get(`users/${userId}`)
 
         return response.data
       },

@@ -36,8 +36,8 @@ export const theme = extendTheme({
         _dark: 'gray.300'
       },
       subtitle: {
-        default: 'gray.400',
-        _dark: 'gray.600'
+        default: 'gray.600',
+        _dark: 'gray.400'
       },
       checkColor: {
         default: 'blue',

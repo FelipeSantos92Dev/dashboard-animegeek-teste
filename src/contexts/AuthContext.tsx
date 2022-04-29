@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
-import { createContext, ReactNode, useState } from 'react'
-import { setCookie } from 'nookies'
+import { createContext, ReactNode, useEffect, useState } from 'react'
+import { parseCookies, setCookie } from 'nookies'
 import { api } from '../services/api'
 
 type User = {
@@ -17,7 +17,7 @@ type SignInCredentials = {
 type AuthContextData = {
   signIn(credentials: SignInCredentials): Promise<void>
   isAuthenticated: boolean
-  user?: User
+  user: User
 }
 
 type AuthProviderProps = {
@@ -31,6 +31,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>()
   const isAuthenticated = !!user
 
+  useEffect(() => {
+    const { 'animegeeksecretcode.token': token } = parseCookies()
+
+    if (token) {
+      api.get('user').then((response) => {
+        const { email, name, role } = response.data.user
+
+        setUser({ email, name, role })
+      })
+    }
+  }, [])
+
   async function signIn({ email, password }: SignInCredentials) {
     try {
       const response = await api.post('auth', {
@@ -40,8 +52,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       const { tokenReturn } = response.data
 
-      setCookie(undefined, 'animegeek.token', tokenReturn.token, {
-        maxAge: 60 * 60 * 24, // 1 day
+      setCookie(undefined, 'animegeeksecretcode.token', tokenReturn.token, {
+        maxAge: 60 * 60 * 24 * 15, // 15 days
         path: '/'
       })
 
@@ -50,7 +62,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       setUser({ email, name, role })
 
-      router.push('/dashboard')
+      api.defaults.headers['Authorization'] = `Bearer ${tokenReturn.token}`
+
+      router.push('/users')
     } catch (error) {
       console.log(error)
     }
