@@ -40,7 +40,7 @@ export default function SignIn() {
         as={'form'}
         w={'100%'}
         maxW={360}
-        bg={'gray.100'}
+        bg={'table'}
         p={8}
         borderRadius={8}
         flexDir={'column'}
@@ -51,13 +51,17 @@ export default function SignIn() {
             type={'email'}
             label={'E-mail'}
             error={errors.email}
+            color={'chart'}
             {...register('email')}
+            _focus={{ color: 'subtitle' }}
           />
           <Input
             type={'password'}
             label={'Senha'}
+            color={'chart'}
             error={errors.password}
             {...register('password')}
+            _focus={{ color: 'subtitle' }}
           />
         </Stack>
 

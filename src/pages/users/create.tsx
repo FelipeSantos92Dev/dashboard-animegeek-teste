@@ -106,6 +106,7 @@ export default function CreateUser() {
                 label={'E-mail'}
                 error={errors.email}
                 {...register('email')}
+                _focus={{ color: 'subtitle' }}
               />
             </SimpleGrid>
 
