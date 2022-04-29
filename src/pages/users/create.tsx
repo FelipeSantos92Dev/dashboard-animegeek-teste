@@ -100,13 +100,22 @@ export default function CreateUser() {
 
           <VStack spacing={'8'}>
             <SimpleGrid minChildWidth={'240px'} spacing={['6', '8']} w={'100%'}>
-              <Input label={'Nome'} error={errors.name} {...register('name')} />
+              <Input
+                label={'Nome'}
+                error={errors.name}
+                color={'inputColor'}
+                _focus={{ color: 'inputColorFocus' }}
+                _hover={{ bg: 'inputColorHover' }}
+                {...register('name')}
+              />
               <Input
                 type={'email'}
                 label={'E-mail'}
                 error={errors.email}
+                color={'inputColor'}
+                _focus={{ color: 'inputColorFocus' }}
+                _hover={{ bg: 'inputColorHover' }}
                 {...register('email')}
-                _focus={{ color: 'subtitle' }}
               />
             </SimpleGrid>
 
@@ -115,12 +124,18 @@ export default function CreateUser() {
                 type={'password'}
                 label={'Senha'}
                 error={errors.password}
+                color={'inputColor'}
+                _focus={{ color: 'inputColorFocus' }}
+                _hover={{ bg: 'inputColorHover' }}
                 {...register('password')}
               />
               <Input
                 type={'password'}
                 label={'Confirmação da senha'}
                 error={errors.password_confirmation}
+                color={'inputColor'}
+                _focus={{ color: 'inputColorFocus' }}
+                _hover={{ bg: 'inputColorHover' }}
                 {...register('password_confirmation')}
               />
             </SimpleGrid>

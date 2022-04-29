@@ -1,8 +1,11 @@
-import { Flex, Button, Stack } from '@chakra-ui/react'
+import { Flex, Button, Stack, HStack, IconButton } from '@chakra-ui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { AuthContex } from '../contexts/AuthContext'
+import { useContext } from 'react'
 import * as yup from 'yup'
 import { Input } from '../components/Form/Input'
+import { DarkModeSwitch } from '../components/DarkModeSwitch'
 
 type FormValues = {
   email: string
@@ -15,6 +18,8 @@ const signInFormSchema = yup.object().shape({
 })
 
 export default function SignIn() {
+  const { signIn } = useContext(AuthContex)
+
   const {
     register,
     handleSubmit,
@@ -24,8 +29,7 @@ export default function SignIn() {
   })
 
   const handleSignIn: SubmitHandler<FormValues> = async (values) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    console.log(values)
+    await signIn(values)
   }
   return (
     <Flex
@@ -51,29 +55,43 @@ export default function SignIn() {
             type={'email'}
             label={'E-mail'}
             error={errors.email}
-            color={'chart'}
+            color={'inputColor'}
+            _focus={{ color: 'inputColorFocus' }}
+            _hover={{ bg: 'inputColorHover' }}
             {...register('email')}
-            _focus={{ color: 'subtitle' }}
           />
           <Input
             type={'password'}
             label={'Senha'}
-            color={'chart'}
             error={errors.password}
+            color={'inputColor'}
+            _focus={{ color: 'inputColorFocus' }}
+            _hover={{ bg: 'inputColorHover' }}
             {...register('password')}
-            _focus={{ color: 'subtitle' }}
           />
         </Stack>
 
-        <Button
-          type={'submit'}
-          mt={6}
-          colorScheme={'blue'}
-          size={'lg'}
-          isLoading={isSubmitting}
-        >
-          Entrar
-        </Button>
+        <HStack mt={'6'}>
+          <Button
+            type={'submit'}
+            colorScheme={'blue'}
+            size={'lg'}
+            width={'85%'}
+            maxW={400}
+            isLoading={isSubmitting}
+          >
+            Entrar
+          </Button>
+
+          <IconButton
+            aria-label="Toggle theme"
+            fontSize={22}
+            bg={'transparent'}
+            variant={'solid'}
+          >
+            <DarkModeSwitch />
+          </IconButton>
+        </HStack>
       </Flex>
     </Flex>
   )

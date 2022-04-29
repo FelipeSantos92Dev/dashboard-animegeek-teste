@@ -42,6 +42,18 @@ export const theme = extendTheme({
       checkColor: {
         default: 'blue',
         _dark: 'green'
+      },
+      inputColor: {
+        default: 'gray.700',
+        _dark: 'gray.700'
+      },
+      inputColorFocus: {
+        default: 'gray.700',
+        _dark: 'gray.700'
+      },
+      inputColorHover: {
+        default: 'gray.400',
+        _dark: 'gray.400'
       }
     }
   }
