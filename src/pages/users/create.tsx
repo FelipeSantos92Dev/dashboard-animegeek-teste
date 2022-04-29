@@ -73,7 +73,13 @@ export default function CreateUser() {
     router.push('/users')
   }
   return (
-    <Box>
+    <Flex
+      direction={'column'}
+      h={'100vh'}
+      bg={'body'}
+      color={'text'}
+      overflowY={'scroll'}
+    >
       <Header />
 
       <Flex w={'100%'} my={'6'} maxWidth={1480} mx={'auto'} px={'6'}>
@@ -83,7 +89,7 @@ export default function CreateUser() {
           as={'form'}
           flex={'1'}
           borderRadius={8}
-          bg={'gray.100'}
+          bg={'table'}
           p={['6', '8']}
           onSubmit={handleSubmit(handleCreateUser)}
         >
@@ -137,6 +143,6 @@ export default function CreateUser() {
           </Flex>
         </Box>
       </Flex>
-    </Box>
+    </Flex>
   )
 }

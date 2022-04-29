@@ -7,6 +7,7 @@ export default function Logo() {
       fontWeight={'bold'}
       letterSpacing={'tight'}
       w={'64'}
+      color={'text'}
     >
       AnimeGeek
       <Text as={'span'} ml={'1'} color={'blue.500'}>

@@ -28,7 +28,14 @@ export default function SignIn() {
     console.log(values)
   }
   return (
-    <Flex w={'100vw'} h={'100vh'} align={'center'} justify={'center'}>
+    <Flex
+      w={'100vw'}
+      h={'100vh'}
+      align={'center'}
+      justify={'center'}
+      bg={'body'}
+      color={'text'}
+    >
       <Flex
         as={'form'}
         w={'100%'}

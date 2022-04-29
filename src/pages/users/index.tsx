@@ -6,7 +6,6 @@ import {
   Heading,
   HStack,
   Icon,
-  Link,
   Spinner,
   Table,
   Tbody,
@@ -75,18 +74,24 @@ export default function UserList() {
   }
 
   return (
-    <Box>
+    <Flex
+      direction={'column'}
+      h={'100vh'}
+      bg={'body'}
+      color={'text'}
+      overflowY={'scroll'}
+    >
       <Header />
 
       <Flex w={'100%'} my={'6'} maxW={1480} mx={'auto'} px={'6'}>
         <Sidebar />
 
-        <Box flex={'1'} borderRadius={8} bg={'gray.100'} p={'8'}>
+        <Box flex={'1'} borderRadius={8} bg={'table'} p={'8'}>
           <Flex mb={'8'} justify={'space-between'} align={'center'}>
             <Heading size={'lg'} fontWeight={'normal'}>
               Usuários
               {!isLoading && isFetching && (
-                <Spinner size={'sm'} color={'gray.500'} ml={'4'} />
+                <Spinner size={'sm'} color={'blue.500'} ml={'4'} />
               )}
             </Heading>
             <NextLink href={'users/create'} passHref>
@@ -112,15 +117,17 @@ export default function UserList() {
             </Flex>
           ) : (
             <>
-              <Table colorScheme={'blue'}>
+              <Table colorScheme={'subtitle'}>
                 <Thead>
                   <Tr>
-                    <Th px={['4', '4', '6']} color={'gray.700'} width={'8'}>
+                    <Th px={['4', '4', '6']} width={'8'}>
                       <Checkbox colorScheme={'blue'} />
                     </Th>
-                    <Th>Usuário</Th>
-                    {isWideVersion && <Th>Data de Cadastro</Th>}
-                    <Th width={'8'}>Ações</Th>
+                    <Th color={'text'}>Usuário</Th>
+                    {isWideVersion && <Th color={'text'}>Data de Cadastro</Th>}
+                    <Th width={'8'} color={'text'}>
+                      Ações
+                    </Th>
                   </Tr>
                 </Thead>
 
@@ -133,15 +140,14 @@ export default function UserList() {
                         </Td>
                         <Td>
                           <Box>
-                            <Link
-                              color={'blue.500'}
+                            <Text
                               onMouseEnter={() => handlePrefetchUser(user.id)}
+                              fontWeight={'bold'}
                             >
-                              <Text fontWeight={'bold'}>
-                                {user.profile.name}
-                              </Text>
-                            </Link>
-                            <Text fontSize={'sm'} color={'gray.600'}>
+                              {user.profile.name}
+                            </Text>
+
+                            <Text fontSize={'sm'} color={'subtitle'}>
                               {user.email}
                             </Text>
                           </Box>
@@ -184,6 +190,6 @@ export default function UserList() {
           )}
         </Box>
       </Flex>
-    </Box>
+    </Flex>
   )
 }

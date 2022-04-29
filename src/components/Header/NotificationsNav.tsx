@@ -1,5 +1,6 @@
-import { HStack, Icon } from '@chakra-ui/react'
-import { RiNotificationLine, RiUserAddLine } from 'react-icons/ri'
+import { HStack, IconButton } from '@chakra-ui/react'
+// import { RiNotificationLine, RiUserAddLine } from 'react-icons/ri'
+import { DarkModeSwitch } from '../DarkModeSwitch'
 
 export default function NotificationsNav() {
   return (
@@ -12,8 +13,16 @@ export default function NotificationsNav() {
       borderRightWidth={1}
       borderColor={'gray.400'}
     >
-      <Icon as={RiNotificationLine} fontSize={'20'} />
-      <Icon as={RiUserAddLine} fontSize={'20'} />
+      {/* <Icon as={RiNotificationLine} fontSize={'20'} />
+      <Icon as={RiUserAddLine} fontSize={'20'} /> */}
+      <IconButton
+        aria-label="Toggle theme"
+        fontSize={22}
+        bg={'transparent'}
+        variant={'solid'}
+      >
+        <DarkModeSwitch />
+      </IconButton>
     </HStack>
   )
 }

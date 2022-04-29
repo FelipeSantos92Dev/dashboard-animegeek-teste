@@ -15,7 +15,7 @@ const options = {
     zoom: {
       enabled: false
     },
-    foreColor: theme.colors.gray[600]
+    foreColor: theme.colors.blue[500]
   },
   grid: {
     show: false
@@ -29,10 +29,10 @@ const options = {
   xaxis: {
     type: 'datetime' as const,
     axisBorder: {
-      color: theme.colors.gray[700]
+      color: theme.colors.blue[500]
     },
     axisTicks: {
-      color: theme.colors.gray[700]
+      color: theme.colors.blue[500]
     },
     categories: [
       '2022-03-18T00:00:00.000Z',
@@ -64,7 +64,7 @@ const series = [
 
 export default function Dashboard() {
   return (
-    <Flex direction={'column'} h={'100vh'}>
+    <Flex direction={'column'} h={'100vh'} bg={'body'} color={'text'}>
       <Header />
 
       <Flex w={'100%'} my={'6'} maxW={1480} mx={'auto'} px={'6'}>
@@ -76,7 +76,7 @@ export default function Dashboard() {
           minChildWidth={'320px'}
           alignContent={'flex-start'}
         >
-          <Box p={['4', '6']} bg={'gray.100'} borderRadius={8} pb={'4'}>
+          <Box p={['4', '6']} bg={'chart'} borderRadius={8} pb={'4'}>
             <Text fontSize={'lg'} mb={'4'}>
               Inscritos da Semana
             </Text>
@@ -88,7 +88,13 @@ export default function Dashboard() {
             />
           </Box>
 
-          <Box p={['4', '6']} bg={'gray.100'} borderRadius={8} pb={'4'}>
+          <Box
+            p={['4', '6']}
+            bg={'chart'}
+            borderRadius={8}
+            pb={'4'}
+            color={'text'}
+          >
             <Text fontSize={'lg'} mb={'4'}>
               Ingressos Vendidos
             </Text>
