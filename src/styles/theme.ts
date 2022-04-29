@@ -52,8 +52,8 @@ export const theme = extendTheme({
         _dark: 'gray.700'
       },
       inputColorHover: {
-        default: 'gray.400',
-        _dark: 'gray.400'
+        default: 'gray.300',
+        _dark: 'gray.300'
       }
     }
   }

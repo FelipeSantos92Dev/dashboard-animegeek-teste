@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { createContext, ReactNode, useState } from 'react'
+import { setCookie } from 'nookies'
 import { api } from '../services/api'
 
 type User = {
@@ -37,12 +38,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
         password
       })
 
-      const {
-        tokenReturn: { user }
-      } = response.data
+      const { tokenReturn } = response.data
 
-      const name = user.name
-      const role = user.role
+      setCookie(undefined, 'animegeek.token', tokenReturn.token, {
+        maxAge: 60 * 60 * 24, // 1 day
+        path: '/'
+      })
+
+      const name = tokenReturn.user.name
+      const role = tokenReturn.user.role
 
       setUser({ email, name, role })
 
