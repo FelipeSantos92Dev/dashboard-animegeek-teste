@@ -2,6 +2,7 @@ import { Box, Flex, SimpleGrid, Text, theme } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
 import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar'
+import withSSRAuth from '../utils/withSSRAuth'
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false
@@ -110,3 +111,9 @@ export default function Dashboard() {
     </Flex>
   )
 }
+
+export const getServerSideProps = withSSRAuth(async (ctx) => {
+  return {
+    props: {}
+  }
+})

@@ -54,6 +54,10 @@ export const theme = extendTheme({
       inputColorHover: {
         default: 'gray.300',
         _dark: 'gray.300'
+      },
+      logout: {
+        default: 'red.600',
+        _dark: 'red.400'
       }
     }
   }

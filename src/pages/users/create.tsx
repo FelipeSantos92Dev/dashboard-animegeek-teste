@@ -20,6 +20,7 @@ import { Header } from '../../components/Header'
 import { Sidebar } from '../../components/Sidebar'
 import { queryClient } from '../../services/queryClient'
 import { useRouter } from 'next/router'
+import withSSRAuth from '../../utils/withSSRAuth'
 
 type FormValues = {
   name: string
@@ -162,3 +163,9 @@ export default function CreateUser() {
     </Flex>
   )
 }
+
+export const getServerSideProps = withSSRAuth(async (ctx) => {
+  return {
+    props: {}
+  }
+})

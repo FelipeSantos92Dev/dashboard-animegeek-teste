@@ -27,6 +27,7 @@ import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 import { queryClient } from '../../services/queryClient'
 import { api } from '../../services/api'
+import withSSRAuth from '../../utils/withSSRAuth'
 
 type Profile = {
   name: string
@@ -192,3 +193,9 @@ export default function UserList() {
     </Flex>
   )
 }
+
+export const getServerSideProps = withSSRAuth(async (ctx) => {
+  return {
+    props: {}
+  }
+})
