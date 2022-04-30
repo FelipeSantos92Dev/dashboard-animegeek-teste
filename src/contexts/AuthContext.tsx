@@ -50,21 +50,33 @@ export function AuthProvider({ children }: AuthProviderProps) {
         password
       })
 
-      const { tokenReturn } = response.data
+      const { tokenReturn, refreshToken } = response.data
+      const { token } = tokenReturn
+      const { user } = tokenReturn
 
-      setCookie(undefined, 'animegeeksecretcode.token', tokenReturn.token, {
+      setCookie(undefined, 'animegeeksecretcode.token', token, {
         maxAge: 60 * 60 * 24 * 15, // 15 days
         path: '/'
       })
 
-      const name = tokenReturn.user.name
-      const role = tokenReturn.user.role
+      setCookie(
+        undefined,
+        'animegeeksecretcode.refreshToken',
+        refreshToken.id,
+        {
+          maxAge: 60 * 60 * 24 * 15, // 15 days
+          path: '/'
+        }
+      )
+
+      const name = user.name
+      const role = user.role
 
       setUser({ email, name, role })
 
-      api.defaults.headers['Authorization'] = `Bearer ${tokenReturn.token}`
+      api.defaults.headers['Authorization'] = `Bearer ${token}`
 
-      router.push('/users')
+      router.push('/dashboard')
     } catch (error) {
       console.log(error)
     }
