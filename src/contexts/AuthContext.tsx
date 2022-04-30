@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router'
+import Router from 'next/router'
 import { createContext, ReactNode, useEffect, useState } from 'react'
-import { parseCookies, setCookie } from 'nookies'
+import { destroyCookie, parseCookies, setCookie } from 'nookies'
 import { api } from '../services/api'
 
 type User = {
@@ -26,8 +26,14 @@ type AuthProviderProps = {
 
 export const AuthContex = createContext({} as AuthContextData)
 
+export function signOut() {
+  destroyCookie(undefined, 'animegeeksecretcode.token')
+  destroyCookie(undefined, 'animegeeksecretcode.refreshToken')
+
+  Router.push('/login')
+}
+
 export function AuthProvider({ children }: AuthProviderProps) {
-  const router = useRouter()
   const [user, setUser] = useState<User>()
   const isAuthenticated = !!user
 
@@ -35,11 +41,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const { 'animegeeksecretcode.token': token } = parseCookies()
 
     if (token) {
-      api.get('user').then((response) => {
-        const { email, name, role } = response.data.user
+      api
+        .get('user')
+        .then((response) => {
+          const { email, name, role } = response.data.user
 
-        setUser({ email, name, role })
-      })
+          setUser({ email, name, role })
+        })
+        .catch(() => {
+          signOut()
+        })
     }
   }, [])
 
@@ -76,7 +87,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       api.defaults.headers['Authorization'] = `Bearer ${token}`
 
-      router.push('/dashboard')
+      Router.push('/dashboard')
     } catch (error) {
       console.log(error)
     }

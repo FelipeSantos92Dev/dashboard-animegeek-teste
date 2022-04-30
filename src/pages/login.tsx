@@ -6,6 +6,9 @@ import { useContext } from 'react'
 import * as yup from 'yup'
 import { Input } from '../components/Form/Input'
 import { DarkModeSwitch } from '../components/DarkModeSwitch'
+import { GetServerSideProps } from 'next'
+import { parseCookies } from 'nookies'
+import withSSRGuest from '../utils/withSSRGuest'
 
 type FormValues = {
   email: string
@@ -96,3 +99,9 @@ export default function SignIn() {
     </Flex>
   )
 }
+
+export const getServerSideProps = withSSRGuest(async (ctx) => {
+  return {
+    props: {}
+  }
+})

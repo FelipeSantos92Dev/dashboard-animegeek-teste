@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios'
 import { parseCookies, setCookie } from 'nookies'
+import { signOut } from '../contexts/AuthContext'
 
 let cookies = parseCookies()
 let isRefreshing = false
@@ -18,7 +19,7 @@ api.interceptors.response.use(
   },
   (error: AxiosError) => {
     if (error.response.status === 401) {
-      if (error.response.data?.message === 'Token inválido!') {
+      if (error.response.data?.message === 'invalid.token') {
         cookies = parseCookies()
 
         const { 'animegeeksecretcode.refreshToken': refreshToken } = cookies
@@ -75,8 +76,10 @@ api.interceptors.response.use(
           })
         })
       } else {
-        // logout
+        signOut()
       }
     }
+
+    return Promise.reject(error)
   }
 )
