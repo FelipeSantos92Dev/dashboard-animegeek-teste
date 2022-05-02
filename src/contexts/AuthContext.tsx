@@ -1,7 +1,7 @@
 import Router from 'next/router'
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { destroyCookie, parseCookies, setCookie } from 'nookies'
-import { api } from '../services/api'
+import { api } from '../services/apiClient'
 
 type User = {
   email: string
@@ -42,7 +42,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     if (token) {
       api
-        .get('user')
+        .get('/user')
         .then((response) => {
           const { email, name, role } = response.data.user
 
@@ -56,32 +56,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function signIn({ email, password }: SignInCredentials) {
     try {
-      const response = await api.post('auth', {
+      const response = await api.post('/auth', {
         email,
         password
       })
 
-      const { tokenReturn, refreshToken } = response.data
-      const { token } = tokenReturn
-      const { user } = tokenReturn
+      const { token, refreshToken, name, role } = response.data
+      console.log({ name, email, role })
 
       setCookie(undefined, 'animegeeksecretcode.token', token, {
         maxAge: 60 * 60 * 24 * 15, // 15 days
         path: '/'
       })
 
-      setCookie(
-        undefined,
-        'animegeeksecretcode.refreshToken',
-        refreshToken.id,
-        {
-          maxAge: 60 * 60 * 24 * 15, // 15 days
-          path: '/'
-        }
-      )
-
-      const name = user.name
-      const role = user.role
+      setCookie(undefined, 'animegeeksecretcode.refreshToken', refreshToken, {
+        maxAge: 60 * 60 * 24 * 15, // 15 days
+        path: '/'
+      })
 
       setUser({ email, name, role })
 

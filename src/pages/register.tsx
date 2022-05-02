@@ -18,9 +18,9 @@ import withSSRGuest from '../utils/withSSRGuest'
 import { queryClient } from '../services/queryClient'
 // import { useRouter } from 'next/router'
 import { useMutation } from 'react-query'
-import { api } from '../services/api'
 import { useContext } from 'react'
 import { AuthContex } from '../contexts/AuthContext'
+import { api } from '../services/apiClient'
 
 type FormValues = {
   name: string

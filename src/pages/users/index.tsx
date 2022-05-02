@@ -26,8 +26,9 @@ import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
 import { queryClient } from '../../services/queryClient'
-import { api } from '../../services/api'
 import withSSRAuth from '../../utils/withSSRAuth'
+import { api } from '../../services/apiClient'
+import { setupAPIClient } from '../../services/api'
 
 type Profile = {
   name: string
@@ -195,6 +196,8 @@ export default function UserList() {
 }
 
 export const getServerSideProps = withSSRAuth(async (ctx) => {
+  setupAPIClient(ctx)
+
   return {
     props: {}
   }

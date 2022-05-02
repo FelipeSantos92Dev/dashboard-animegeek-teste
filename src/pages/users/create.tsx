@@ -20,7 +20,8 @@ import { Sidebar } from '../../components/Sidebar'
 import { queryClient } from '../../services/queryClient'
 import { useRouter } from 'next/router'
 import withSSRAuth from '../../utils/withSSRAuth'
-import { api } from '../../services/api'
+import { api } from '../../services/apiClient'
+import { setupAPIClient } from '../../services/api'
 
 type FormValues = {
   name: string
@@ -164,6 +165,8 @@ export default function CreateUser() {
 }
 
 export const getServerSideProps = withSSRAuth(async (ctx) => {
+  setupAPIClient(ctx)
+
   return {
     props: {}
   }
