@@ -1,4 +1,12 @@
-import { Flex, Button, Stack, HStack, IconButton } from '@chakra-ui/react'
+import {
+  Flex,
+  Button,
+  Stack,
+  HStack,
+  IconButton,
+  Heading,
+  Divider
+} from '@chakra-ui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { AuthContex } from '../contexts/AuthContext'
@@ -6,8 +14,6 @@ import { useContext } from 'react'
 import * as yup from 'yup'
 import { Input } from '../components/Form/Input'
 import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { GetServerSideProps } from 'next'
-import { parseCookies } from 'nookies'
 import withSSRGuest from '../utils/withSSRGuest'
 
 type FormValues = {
@@ -53,6 +59,10 @@ export default function SignIn() {
         flexDir={'column'}
         onSubmit={handleSubmit(handleSignIn)}
       >
+        <Heading size={'md'} fontWeight={'bold'}>
+          Entre Com Suas Credenciais
+        </Heading>
+        <Divider my={'6'} borderColor={'gray.700'} />
         <Stack spacing={4}>
           <Input
             type={'email'}
@@ -74,12 +84,12 @@ export default function SignIn() {
           />
         </Stack>
 
-        <HStack mt={'6'}>
+        <HStack mt={'6'} justify={'flex-end'}>
           <Button
             type={'submit'}
             colorScheme={'blue'}
             size={'lg'}
-            width={'85%'}
+            width={'40'}
             maxW={400}
             isLoading={isSubmitting}
           >

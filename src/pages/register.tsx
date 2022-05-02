@@ -1,26 +1,26 @@
 import {
-  Box,
-  Button,
-  Divider,
   Flex,
-  Heading,
+  Button,
   HStack,
+  IconButton,
+  VStack,
   SimpleGrid,
-  VStack
+  Box,
+  Heading,
+  Divider
 } from '@chakra-ui/react'
-import Link from 'next/link'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import { Input } from '../components/Form/Input'
+import { DarkModeSwitch } from '../components/DarkModeSwitch'
+import withSSRGuest from '../utils/withSSRGuest'
+import { queryClient } from '../services/queryClient'
+// import { useRouter } from 'next/router'
 import { useMutation } from 'react-query'
-
-import { Input } from '../../components/Form/Input'
-import { Header } from '../../components/Header'
-import { Sidebar } from '../../components/Sidebar'
-import { queryClient } from '../../services/queryClient'
-import { useRouter } from 'next/router'
-import withSSRAuth from '../../utils/withSSRAuth'
-import { api } from '../../services/api'
+import { api } from '../services/api'
+import { useContext } from 'react'
+import { AuthContex } from '../contexts/AuthContext'
 
 type FormValues = {
   name: string
@@ -42,7 +42,9 @@ const createUserFormSchema = yup.object().shape({
 })
 
 export default function CreateUser() {
-  const router = useRouter()
+  const { signIn } = useContext(AuthContex)
+
+  // const router = useRouter()
   const createUser = useMutation(
     async (user: FormValues) => {
       const response = await api.post('/users', {
@@ -69,22 +71,21 @@ export default function CreateUser() {
 
   const handleCreateUser: SubmitHandler<FormValues> = async (values) => {
     await createUser.mutateAsync(values)
+    await signIn(values)
 
-    router.push('/dashboard')
+    // router.push('/dashboard')
   }
   return (
     <Flex
       direction={'column'}
+      w={'100vw'}
       h={'100vh'}
+      align={'center'}
+      justify={'center'}
       bg={'body'}
       color={'text'}
-      overflowY={'scroll'}
     >
-      <Header />
-
-      <Flex w={'100%'} my={'6'} maxWidth={1480} mx={'auto'} px={'6'}>
-        <Sidebar />
-
+      <Flex w={['100%', '60%']} my={'6'} maxWidth={1480} mx={'auto'} px={'6'}>
         <Box
           as={'form'}
           flex={'1'}
@@ -93,8 +94,8 @@ export default function CreateUser() {
           p={['6', '8']}
           onSubmit={handleSubmit(handleCreateUser)}
         >
-          <Heading size={'lg'} fontWeight={'normal'}>
-            Criar Usuário
+          <Heading size={'md'} fontWeight={'bold'}>
+            Cadastrar Novo Usuário
           </Heading>
           <Divider my={'6'} borderColor={'gray.700'} />
 
@@ -140,30 +141,34 @@ export default function CreateUser() {
               />
             </SimpleGrid>
           </VStack>
+          <HStack mt={'6'} justify={'flex-end'}>
+            <Button
+              type={'submit'}
+              colorScheme={'blue'}
+              size={'lg'}
+              width={'40'}
+              maxW={400}
+              isLoading={isSubmitting}
+            >
+              Registrar
+            </Button>
 
-          <Flex mt={'8'} justify={'flex-end'}>
-            <HStack spacing={'4'}>
-              <Link href={'/users'} passHref>
-                <Button as={'a'} colorScheme={'purple'}>
-                  Cancelar
-                </Button>
-              </Link>
-              <Button
-                type={'submit'}
-                colorScheme={'twitter'}
-                isLoading={isSubmitting}
-              >
-                Salvar
-              </Button>
-            </HStack>
-          </Flex>
+            <IconButton
+              aria-label="Toggle theme"
+              fontSize={22}
+              bg={'transparent'}
+              variant={'solid'}
+            >
+              <DarkModeSwitch />
+            </IconButton>
+          </HStack>
         </Box>
       </Flex>
     </Flex>
   )
 }
 
-export const getServerSideProps = withSSRAuth(async (ctx) => {
+export const getServerSideProps = withSSRGuest(async (ctx) => {
   return {
     props: {}
   }

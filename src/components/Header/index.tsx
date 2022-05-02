@@ -31,7 +31,7 @@ export function Header() {
           fontSize={'24'}
           onClick={onOpen}
           mr={'2'}
-        ></IconButton>
+        />
       )}
       <Logo />
 

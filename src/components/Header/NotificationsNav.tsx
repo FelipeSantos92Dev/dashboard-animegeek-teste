@@ -1,6 +1,4 @@
-import { HStack, Icon, IconButton } from '@chakra-ui/react'
-import { RiLogoutBoxLine } from 'react-icons/ri'
-import { signOut } from '../../contexts/AuthContext'
+import { HStack, IconButton } from '@chakra-ui/react'
 // import { RiNotificationLine, RiUserAddLine } from 'react-icons/ri'
 import { DarkModeSwitch } from '../DarkModeSwitch'
 
@@ -8,8 +6,8 @@ export default function NotificationsNav() {
   return (
     <HStack
       spacing={['1', '2']}
-      mx={['6', '8']}
-      pr={['6', '8']}
+      mx={['2', '4']}
+      pr={['2', '4']}
       py={'1'}
       color={'gray.700'}
       borderRightWidth={1}
@@ -24,20 +22,6 @@ export default function NotificationsNav() {
         variant={'solid'}
       >
         <DarkModeSwitch />
-      </IconButton>
-
-      <IconButton
-        aria-label="Toggle theme"
-        fontSize={22}
-        bg={'transparent'}
-        variant={'solid'}
-      >
-        <Icon
-          as={RiLogoutBoxLine}
-          fontSize={'20'}
-          color={'logout'}
-          onClick={() => signOut()}
-        />
       </IconButton>
     </HStack>
   )
