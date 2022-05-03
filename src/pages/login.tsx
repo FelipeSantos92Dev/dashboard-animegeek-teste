@@ -15,6 +15,7 @@ import * as yup from 'yup'
 import { Input } from '../components/Form/Input'
 import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import withSSRGuest from '../utils/withSSRGuest'
+import { setupAPIClient } from '../services/api'
 
 type FormValues = {
   email: string
@@ -26,7 +27,7 @@ const signInFormSchema = yup.object().shape({
   password: yup.string().required('Senha obrigatória')
 })
 
-export default function SignIn() {
+export default function Login() {
   const { signIn } = useContext(AuthContex)
 
   const {
@@ -69,7 +70,7 @@ export default function SignIn() {
             label={'E-mail'}
             error={errors.email}
             color={'inputColor'}
-            _focus={{ color: 'inputColorFocus' }}
+            _focus={{ color: 'inputColorFocus', outlineColor: 'blue.300' }}
             _hover={{ bg: 'inputColorHover' }}
             {...register('email')}
           />
@@ -78,7 +79,7 @@ export default function SignIn() {
             label={'Senha'}
             error={errors.password}
             color={'inputColor'}
-            _focus={{ color: 'inputColorFocus' }}
+            _focus={{ color: 'inputColorFocus', outlineColor: 'blue.300' }}
             _hover={{ bg: 'inputColorHover' }}
             {...register('password')}
           />
@@ -111,6 +112,8 @@ export default function SignIn() {
 }
 
 export const getServerSideProps = withSSRGuest(async (ctx) => {
+  setupAPIClient(ctx)
+
   return {
     props: {}
   }

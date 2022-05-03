@@ -105,7 +105,7 @@ export default function CreateUser() {
                 label={'Nome'}
                 error={errors.name}
                 color={'inputColor'}
-                _focus={{ color: 'inputColorFocus' }}
+                _focus={{ color: 'inputColorFocus', outlineColor: 'blue.300' }}
                 _hover={{ bg: 'inputColorHover' }}
                 {...register('name')}
               />
@@ -114,7 +114,7 @@ export default function CreateUser() {
                 label={'E-mail'}
                 error={errors.email}
                 color={'inputColor'}
-                _focus={{ color: 'inputColorFocus' }}
+                _focus={{ color: 'inputColorFocus', outlineColor: 'blue.300' }}
                 _hover={{ bg: 'inputColorHover' }}
                 {...register('email')}
               />
@@ -126,7 +126,7 @@ export default function CreateUser() {
                 label={'Senha'}
                 error={errors.password}
                 color={'inputColor'}
-                _focus={{ color: 'inputColorFocus' }}
+                _focus={{ color: 'inputColorFocus', outlineColor: 'blue.300' }}
                 _hover={{ bg: 'inputColorHover' }}
                 {...register('password')}
               />
@@ -135,7 +135,7 @@ export default function CreateUser() {
                 label={'Confirmação da senha'}
                 error={errors.password_confirmation}
                 color={'inputColor'}
-                _focus={{ color: 'inputColorFocus' }}
+                _focus={{ color: 'inputColorFocus', outlineColor: 'blue.300' }}
                 _hover={{ bg: 'inputColorHover' }}
                 {...register('password_confirmation')}
               />

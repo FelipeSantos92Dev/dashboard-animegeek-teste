@@ -78,7 +78,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       api.defaults.headers['Authorization'] = `Bearer ${token}`
 
-      Router.push('/dashboard')
+      Router.push('/home')
     } catch (error) {
       console.log(error)
     }

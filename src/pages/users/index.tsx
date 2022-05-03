@@ -46,7 +46,7 @@ type User = {
   created_at: string
 }
 
-export default function UserList() {
+export default function Users() {
   const { data, isLoading, isFetching, error } = useQuery('users', async () => {
     const response = await api.get('users')
 
