@@ -125,7 +125,7 @@ export default function Users() {
                       <Checkbox colorScheme={'blue'} />
                     </Th>
                     <Th color={'text'}>Usuário</Th>
-                    {isWideVersion && <Th color={'text'}>Data de Cadastro</Th>}
+                    {isWideVersion && <Th color={'text'}>Perfil</Th>}
                     <Th width={'8'} color={'text'}>
                       Ações
                     </Th>

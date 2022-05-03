@@ -71,7 +71,7 @@ export default function CreateUser() {
   const handleCreateUser: SubmitHandler<FormValues> = async (values) => {
     await createUser.mutateAsync(values)
 
-    router.push('/dashboard')
+    router.push('/users')
   }
   return (
     <Flex
