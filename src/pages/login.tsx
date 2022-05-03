@@ -5,7 +5,9 @@ import {
   HStack,
   IconButton,
   Heading,
-  Divider
+  Divider,
+  Box,
+  Text
 } from '@chakra-ui/react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -64,6 +66,17 @@ export default function Login() {
           Entre Com Suas Credenciais
         </Heading>
         <Divider my={'6'} borderColor={'gray.700'} />
+        {/* <Box
+          bg={'red.500'}
+          color={'gray.200'}
+          p={'3'}
+          mb={'3'}
+          border={'solid'}
+          borderRadius={'md'}
+          borderColor={'red.800'}
+        >
+          <Text>Erro fatal</Text>
+        </Box> */}
         <Stack spacing={4}>
           <Input
             type={'email'}

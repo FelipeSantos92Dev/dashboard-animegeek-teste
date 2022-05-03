@@ -17,7 +17,7 @@ export default function Index() {
         <h1>Página Principal</h1>
         <Link href={'login'}>Login</Link>
         <br />
-        <Link href={'login'}>Cadastro</Link>
+        <Link href={'register'}>Cadastro</Link>
       </main>
 
       <footer></footer>

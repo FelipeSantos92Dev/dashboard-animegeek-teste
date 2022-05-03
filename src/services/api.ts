@@ -10,7 +10,7 @@ export function setupAPIClient(ctx = undefined) {
   let cookies = parseCookies(ctx)
 
   const api = axios.create({
-    baseURL: 'http://localhost:4000',
+    baseURL: 'https://animegeek-node-api.vercel.app',
     headers: {
       Authorization: `Bearer ${cookies['animegeeksecretcode.token']}`
     }
