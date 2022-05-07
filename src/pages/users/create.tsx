@@ -92,7 +92,7 @@ export default function CreateUser() {
           borderRadius={8}
           bg={'table'}
           p={['6', '8']}
-          onSubmit={handleSubmit(handleCreateUser)}
+          // onSubmit={handleSubmit(handleCreateUser)}
         >
           <Heading size={'lg'} fontWeight={'normal'}>
             Criar Usuário
@@ -154,7 +154,7 @@ export default function CreateUser() {
                 colorScheme={'twitter'}
                 isLoading={isSubmitting}
               >
-                Salvar
+                <Link href={'/users'}>Salvar</Link>
               </Button>
             </HStack>
           </Flex>
@@ -164,10 +164,10 @@ export default function CreateUser() {
   )
 }
 
-export const getServerSideProps = withSSRAuth(async (ctx) => {
-  setupAPIClient(ctx)
+// export const getServerSideProps = withSSRAuth(async (ctx) => {
+//   setupAPIClient(ctx)
 
-  return {
-    props: {}
-  }
-})
+//   return {
+//     props: {}
+//   }
+// })

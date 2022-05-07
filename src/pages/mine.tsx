@@ -22,10 +22,10 @@ export default function Mine() {
   )
 }
 
-export const getServerSideProps = withSSRAuth(async (ctx) => {
-  setupAPIClient(ctx)
+// export const getServerSideProps = withSSRAuth(async (ctx) => {
+//   setupAPIClient(ctx)
 
-  return {
-    props: {}
-  }
-})
+//   return {
+//     props: {}
+//   }
+// })

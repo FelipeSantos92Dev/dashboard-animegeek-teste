@@ -4,7 +4,7 @@ import { Sidebar } from '../components/Sidebar'
 import { setupAPIClient } from '../services/api'
 import withSSRAuth from '../utils/withSSRAuth'
 
-export default function Sells() {
+export default function Sold() {
   return (
     <Flex direction={'column'} h={'100vh'} bg={'body'} color={'text'}>
       <Header />
@@ -14,7 +14,7 @@ export default function Sells() {
 
         <Box p={['4', '6']} bg={'table'} w={'100%'} borderRadius={8} pb={'4'}>
           <Text fontSize={'lg'} mb={'4'}>
-            Página de Venda de Ingressos
+            Ingressos Vendidos
           </Text>
         </Box>
       </Flex>

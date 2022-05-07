@@ -18,6 +18,8 @@ import { Input } from '../components/Form/Input'
 import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import withSSRGuest from '../utils/withSSRGuest'
 import { setupAPIClient } from '../services/api'
+import { Router } from 'next/router'
+import Link from 'next/link'
 
 type FormValues = {
   email: string
@@ -43,6 +45,7 @@ export default function Login() {
   const handleSignIn: SubmitHandler<FormValues> = async (values) => {
     await signIn(values)
   }
+
   return (
     <Flex
       w={'100vw'}
@@ -60,7 +63,7 @@ export default function Login() {
         p={8}
         borderRadius={8}
         flexDir={'column'}
-        onSubmit={handleSubmit(handleSignIn)}
+        // onSubmit={handleSubmit(handleSignIn)}
       >
         <Heading size={'md'} fontWeight={'bold'}>
           Entre Com Suas Credenciais
@@ -107,7 +110,7 @@ export default function Login() {
             maxW={400}
             isLoading={isSubmitting}
           >
-            Entrar
+            <Link href={'home'}>Entrar</Link>
           </Button>
 
           <IconButton

@@ -22,10 +22,10 @@ export default function Home() {
   )
 }
 
-export const getServerSideProps = withSSRAuth(async (ctx) => {
-  setupAPIClient(ctx)
+// export const getServerSideProps = withSSRAuth(async (ctx) => {
+//   setupAPIClient(ctx)
 
-  return {
-    props: {}
-  }
-})
+//   return {
+//     props: {}
+//   }
+// })

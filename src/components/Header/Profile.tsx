@@ -28,14 +28,14 @@ export function Profile({ showProfileData = true }: ProfileProps) {
       </IconButton>
       {showProfileData && (
         <Box mr={'4'} textAlign={'right'}>
-          <Text>{user?.name}</Text>
+          <Text>{'Usuário Teste'}</Text>
           <Text color={'gray.600'} fontSize={'sm'}>
-            {user?.email}
+            {'usuario@teste.com'}
           </Text>
         </Box>
       )}
 
-      <Avatar size={'md'} name={user?.name} src={user?.name} />
+      <Avatar size={'md'} name={'Usuário Teste'} src={'Usuário Teste'} />
     </Flex>
   )
 }

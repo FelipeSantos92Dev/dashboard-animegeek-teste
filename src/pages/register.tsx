@@ -22,6 +22,7 @@ import { useContext } from 'react'
 import { AuthContex } from '../contexts/AuthContext'
 import { api } from '../services/apiClient'
 import { setupAPIClient } from '../services/api'
+import Link from 'next/link'
 
 type FormValues = {
   name: string
@@ -93,7 +94,7 @@ export default function Register() {
           borderRadius={8}
           bg={'table'}
           p={['6', '8']}
-          onSubmit={handleSubmit(handleCreateUser)}
+          // onSubmit={handleSubmit(handleCreateUser)}
         >
           <Heading size={'md'} fontWeight={'bold'}>
             Cadastrar Novo Usuário
@@ -151,7 +152,7 @@ export default function Register() {
               maxW={400}
               isLoading={isSubmitting}
             >
-              Registrar
+              <Link href={'home'}>Cadastrar</Link>
             </Button>
 
             <IconButton
@@ -169,10 +170,10 @@ export default function Register() {
   )
 }
 
-export const getServerSideProps = withSSRGuest(async (ctx) => {
-  setupAPIClient(ctx)
+// export const getServerSideProps = withSSRGuest(async (ctx) => {
+//   setupAPIClient(ctx)
 
-  return {
-    props: {}
-  }
-})
+//   return {
+//     props: {}
+//   }
+// })

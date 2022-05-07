@@ -22,53 +22,33 @@ export function SidebarNav() {
         <NavLink icon={RiHome2Line} href={'/home'}>
           Home
         </NavLink>
-        {userCanManage && (
-          <NavLink icon={RiLineChartLine} href={'/dashboard'}>
-            Dashboard
-          </NavLink>
-        )}
-        {userCanManage && (
-          <NavLink icon={RiContactsLine} href={'/users'}>
-            Usuários
-          </NavLink>
-        )}
+
+        <NavLink icon={RiLineChartLine} href={'/dashboard'}>
+          Dashboard
+        </NavLink>
+
+        <NavLink icon={RiContactsLine} href={'/users'}>
+          Usuários
+        </NavLink>
       </NavSection>
 
-      {userCanManage && (
-        <NavSection title={'EVENTO'}>
-          <NavLink icon={RiStackLine} href={'/categories'}>
-            Categoria
-          </NavLink>
-          <NavLink icon={RiCoupon3Line} href={'/tickets'}>
-            Ingressos
-          </NavLink>
-          <NavLink icon={RiShoppingCartLine} href={'/sells'}>
-            Vendas
-          </NavLink>
-        </NavSection>
-      )}
+      <NavSection title={'INGRESSOS - Visitante'}>
+        <NavLink icon={RiShoppingCartLine} href={'/store'}>
+          Comprar
+        </NavLink>
+        <NavLink icon={RiCoupon3Line} href={'/mine'}>
+          Adquiridos
+        </NavLink>
+      </NavSection>
 
-      {userCanBuy && (
-        <NavSection title={'INGRESSOS'}>
-          <NavLink icon={RiShoppingCartLine} href={'/store'}>
-            Comprar
-          </NavLink>
-          <NavLink icon={RiCoupon3Line} href={'/mine'}>
-            Adquiridos
-          </NavLink>
-        </NavSection>
-      )}
-
-      {userCanSell && (
-        <NavSection title={'INGRESSOS'}>
-          <NavLink icon={RiShoppingCartLine} href={'/store'}>
-            Vender
-          </NavLink>
-          <NavLink icon={RiCoupon3Line} href={'/mine'}>
-            Vendidos
-          </NavLink>
-        </NavSection>
-      )}
+      <NavSection title={'INGRESSOS - Guichê'}>
+        <NavLink icon={RiShoppingCartLine} href={'/sells'}>
+          Vender
+        </NavLink>
+        <NavLink icon={RiCoupon3Line} href={'/sold'}>
+          Vendidos
+        </NavLink>
+      </NavSection>
     </Stack>
   )
 }
